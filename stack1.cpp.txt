@@ -1,0 +1,24 @@
+#include <iostream>
+
+// Функция stackMemory не возвращает значения
+void stackMemory()
+{
+    // Создаем локальную переменную a на стеке и инициализируем ее значением 0
+    int a = 0;
+    
+    // Выводим значение переменной a
+    std::cout << "a: " << a << std::endl;
+    
+    // Увеличиваем значение переменной a на 1
+    a += 1;
+}
+
+int main()
+{
+    // Вызываем функцию stackMemory несколько раз
+    stackMemory();
+    stackMemory();
+    stackMemory();
+    
+    return 0;
+}

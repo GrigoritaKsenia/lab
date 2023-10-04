@@ -1,0 +1,46 @@
+#include <iostream>
+#include <stdlib.h>
+
+// Функция heapMemory выделяет динамическую память с использованием malloc
+int* heapMemory()
+{
+    // Выделяем память для одного целочисленного значения
+    void* memory = malloc(sizeof(int));
+    
+    // Приводим указатель memory к типу int* для работы с целыми числами
+    int* a = (int*) memory;
+    
+    // Выводим значение, на которое указывает указатель a (неинициализированное)
+    std::cout << "a: " << *a << std::endl;
+    
+    // Увеличиваем значение, на которое указывает указатель a, на 1
+    *a = *a + 1;
+    
+    // Возвращаем указатель на выделенную память
+    return a;
+}
+
+int main()
+{
+    // Вызываем функцию heapMemory дважды, чтобы получить два указателя на выделенную память
+    int* a = heapMemory(); 
+    int* b = heapMemory();
+
+    // Проверяем, равны ли адреса, на которые указывают a и b
+    bool areAddressesEqual = ((size_t) a == (size_t) b);
+    std::cout << "are addresses equal: " << (areAddressesEqual ? "yes" : "no") << std::endl;
+
+    // Проверяем, равны ли значения, на которые указывают a и b
+    bool areValuesEqual = (*a == *b);
+    std::cout << "are values equal: " << (areValuesEqual ? "yes" : "no") << std::endl;
+
+    // Вычитаем значения, на которые указывают a и b, и выводим результат
+    std::cout << (*a - *b) << std::endl;
+
+    // Освобождаем выделенную память с использованием free
+    free(a);
+    free(b);
+
+    return 0;
+}
+
